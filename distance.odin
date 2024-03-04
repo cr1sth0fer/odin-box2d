@@ -10,7 +10,7 @@ Segment_Distance_Result :: struct
 	distance_squared: f32,
 }
 
-/// A distance proxy is used by the GJK algorithm. It encapsulates any shape.
+// A distance proxy is used by the GJK algorithm. It encapsulates any shape.
 Distance_Proxy :: struct
 {
 	vertices: [MAX_POLYGON_VERTICES]Vec2,

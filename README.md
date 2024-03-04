@@ -2,7 +2,7 @@
 
 Box2D 3.0 https://github.com/erincatto/box2c
 
-Current commit: https://github.com/erincatto/box2c/commit/24c3649cd9089ecf731f406bc804b5281d28f174
+Current commit: https://github.com/erincatto/box2c/commit/29adfcfb4dbc371a50e37d8e17b072d990ad7ae6
 
 Included platform binaries:
 * windows_amd64
@@ -11,6 +11,7 @@ All binaries are build using the default settings.
 All binaries are located in binaries directory if you want to use your own build of Box2D.
 
 Defines for Box2D Constants:
+* BOX2D_AVX2 (default: true)
 * BOX2D_LENGTH_UNITS_PER_METER
 * BOX2D_MAX_POLYGON_VERTICES
 * BOX2D_MAX_WORLDS
@@ -30,25 +31,25 @@ import "core:fmt"
 
 main :: proc()
 {
-    world_def := b2.DEFAULT_WORLD_DEF
+    world_def := b2.default_world_def()
     world_def.gravity = b2.Vec2{0, -10}
     world_id := b2.create_world(&world_def)
     defer b2.destroy_world(world_id)
     
-    ground_body_def := b2.DEFAULT_BODY_DEF
+    ground_body_def := b2.default_body_def()
     ground_body_def.position = b2.Vec2{0, -10}
     ground_body_id := b2.create_body(world_id, &ground_body_def)
 
     ground_box := b2.make_box(50, 10)
-    ground_shape_def := b2.DEFAULT_SHAPE_DEF
+    ground_shape_def := b2.default_shape_def()
     b2.create_polygon_shape(ground_body_id, &ground_shape_def, &ground_box)
 
-    body_def := b2.DEFAULT_BODY_DEF
+    body_def := b2.default_body_def()
     body_def.type = .Dynamic
     body_def.position = b2.Vec2{0, 4}
     body_id := b2.create_body(world_id, &body_def)
 
-    shape_def := b2.DEFAULT_SHAPE_DEF
+    shape_def := b2.default_shape_def(0)
     shape_def.density = 1
     shape_def.friction = 0.3
 

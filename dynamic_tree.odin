@@ -12,15 +12,12 @@ Tree_Node :: struct
 	// Category bits for collision filtering
 	category_bits: u32, // 4
 
-    parent_or_next: struct #raw_union 
-	{
-		parent, next: i32,
-	}, // 4
+    parent_or_next: i32, // 4
 
 	child1, // 4
 	child2: i32, // 4
 
-	// TODO_ERIN could be union with child index
+	// todo could be union with child index
 	user_data: i32, // 4
 
 	// leaf = 0, free node = -1

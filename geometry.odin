@@ -1,5 +1,32 @@
 package box2d
 
+// Low level ray-cast input data
+Ray_Cast_Input :: struct
+{
+	origin, translation: Vec2,
+	max_fraction: f32,
+}
+
+// Low level shape cast input in generic form
+Shape_Cast_Input :: struct
+{
+	points: [MAX_POLYGON_VERTICES]Vec2,
+	count: i32,
+	radius: f32,
+	translation: Vec2,
+	max_fraction: f32,
+}
+
+// Low level ray-cast or shape-cast output data
+Cast_Output :: struct
+{
+	normal,
+	point: Vec2,
+	fraction: f32,
+	iterations: i32,
+	hit: bool,
+}
+
 // This holds the mass data computed for a shape.
 Mass_Data :: struct
 {
@@ -33,7 +60,7 @@ Capsule :: struct
 // Polygons have a maximum number of vertices equal to MAX_POLYGON_VERTICES.
 //
 // In most cases you should not need many vertices for a convex polygon.
-// * Warning DO NOT fill this out manually, instead use a helper function like
+// - Warning DO NOT fill this out manually, instead use a helper function like
 // make_polygon or make_box.
 Polygon :: struct
 {

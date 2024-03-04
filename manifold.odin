@@ -1,12 +1,5 @@
 package box2d
 
-NULL_FEATURE :: max(u8)
-
-make_id :: #force_inline proc "contextless" (a, b: $T) -> u16
-{
-    return (u8(a) << 8 | u8(b))
-}
-
 // A manifold point is a contact point belonging to a contact
 // manifold. It holds details related to the geometry and dynamics
 // of the contact points.
@@ -46,4 +39,5 @@ Manifold :: struct
 	point_count: i32,
 }
 
+// Use this to initialize your manifold
 EMPTY_MANIFOLD :: Manifold{}

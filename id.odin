@@ -44,11 +44,13 @@ NULL_SHAPE_ID :: Shape_ID{}
 NULL_JOINT_ID :: Joint_ID{}
 NULL_CHAIN_ID :: Chain_ID{}
 
+// Determine if any id is null
 is_null :: #force_inline proc "contextless" (id: $T) -> bool
 {
     return id.index == 0
 }
 
+// Determine if any id is non-null
 is_non_null :: #force_inline proc "contextless" (id: $T) -> bool
 {
     return id.index != 0

@@ -15,7 +15,7 @@ Sensor_End_Touch_Event :: struct
 }
 
 // Sensor events are buffered in the Box2D world and are available
-//	as begin/end overlap event arrays after the time step is complete.
+// as begin/end overlap event arrays after the time step is complete.
 //
 // Note: these may become invalid if bodies and/or shapes are destroyed
 Sensor_Events :: struct
@@ -61,4 +61,29 @@ Contact_Data :: struct
 	shape_id_a,
 	shape_id_b: Shape_ID,
 	manifold: Manifold,
+}
+
+// Triggered when a body moves from simulation. Not reported for bodies moved by the user.
+//
+// This also has a flag to indicate that the body went to sleep so the application can also
+// sleep that actor/entity/object associated with the body.
+//
+// On the other hand if the flag does not indicate the body went to sleep then the application
+// can treat the actor/entity/object associated with the body as awake.
+Body_Move_Event :: struct
+{
+	transform: Transform,
+	body_id: Body_ID,
+	user_data: rawptr,
+	fell_asleep: bool,
+}
+
+// Body events are buffered in the Box2D world and are available
+// as event arrays after the time step is complete.
+//
+// Note: this date becomes invalid if bodies are destroyed
+Body_Events :: struct
+{
+	move_events: [^]Body_Move_Event,
+	lmoveCount: i32,
 }

@@ -39,7 +39,7 @@ Debug_Draw :: struct
 
 	draw_shapes,
 	draw_joints,
-	draw_aab_bs,
+	draw_aabbs,
 	draw_mass,
 	draw_contacts,
 	draw_graph_colors,

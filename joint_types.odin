@@ -46,19 +46,9 @@ Distance_Joint_Def :: struct
 
 	// Set this flag to true if the attached bodies should collide.
 	collide_connected: bool,
-}
 
-DEFAULT_DISTANCE_JOINT_DEF :: Distance_Joint_Def {
-	NULL_BODY_ID,
-	NULL_BODY_ID,
-	{0, 0},
-	{0, 0},
-	1,
-	0,
-	HUGE,
-	0,
-	0,
-	false,
+	// User data pointer
+	user_data: rawptr,
 }
 
 // A motor joint is used to control the relative motion
@@ -85,19 +75,14 @@ Motor_Joint_Def :: struct
 	max_torque,
 
 	// Position correction factor in the range [0,1].
-	correction_factor: f32
-}
+	correction_factor: f32,
 
-// Use this to initialize your joint definition
-DEFAULT_MOTOR_JOINT_DEF :: Motor_Joint_Def {
-	NULL_BODY_ID,
-	NULL_BODY_ID,
-	{0, 0},
-	0,
-	1,
-	1,
-	0.3,
-};
+	// Set this flag to true if the attached bodies should collide.
+	collide_connected: bool,
+
+	// User data pointer
+	user_data: rawptr,
+}
 
 // A mouse joint is used to make a point on a body track a
 // specified world point. This a soft constraint and allows the constraint to stretch without
@@ -118,21 +103,19 @@ Mouse_Joint_Def :: struct
 
 	// Damping ratio, non-dimensional
 	damping_ratio: f32,
+
+	// Set this flag to true if the attached bodies should collide.
+	collide_connected: bool,
+
+	// User data pointer
+	user_data: rawptr,
 }
 
-DEFAULT_MOUSE_JOINT_DEF :: Mouse_Joint_Def {
-	NULL_BODY_ID,
-	NULL_BODY_ID,
-	{0, 0},
-	4.0,
-	1.0,
-}
-
-/// Prismatic joint definition. This requires defining a line of
-/// motion using an axis and an anchor point. The definition uses local
-/// anchor points and a local axis so that the initial configuration
-/// can violate the constraint slightly. The joint translation is zero
-/// when the local anchor points coincide in world space.
+// Prismatic joint definition. This requires defining a line of
+// motion using an axis and an anchor point. The definition uses local
+// anchor points and a local axis so that the initial configuration
+// can violate the constraint slightly. The joint translation is zero
+// when the local anchor points coincide in world space.
 Prismatic_Joint_Def :: struct
 {
 	// The first attached body.
@@ -173,22 +156,9 @@ Prismatic_Joint_Def :: struct
 
 	// Set this flag to true if the attached bodies should collide.
 	collide_connected: bool,
-}
 
-DEFAULT_PRISMATIC_JOINT_DEF :: Prismatic_Joint_Def {
-	NULL_BODY_ID,
-	NULL_BODY_ID,
-	{0, 0},
-	{0, 0},
-	{1, 0},
-	0,
-	false,
-	0,
-	0,
-	false,
-	0,
-	0,
-	false,
+	// User data pointer
+	user_data: rawptr,
 }
 
 // Revolute joint definition. This requires defining an anchor point where the
@@ -243,22 +213,9 @@ Revolute_Joint_Def :: struct
 
 	// Set this flag to true if the attached bodies should collide.
 	collide_connected: bool,
-}
 
-DEFAULT_REVOLUTE_JOINT_DEF :: Revolute_Joint_Def {
-	NULL_BODY_ID,
-	NULL_BODY_ID,
-    {0, 0},
-    {0, 0},
-	0,
-    false,
-	0,
-	0,
-    false,
-	0,
-	0,
-	0.25,
-	false,
+	// User data pointer
+	user_data: rawptr,
 }
 
 // A weld joint connect to bodies together rigidly. This constraint can be made soft to mimic
@@ -295,20 +252,9 @@ Weld_Joint_Def :: struct
 
 	// Set this flag to true if the attached bodies should collide.
 	collide_connected: bool,
-}
 
-// Use this to initialize your joint definition
-DEFAULT_WELD_JOINT_DEF :: Weld_Joint_Def{
-	NULL_BODY_ID,
-	NULL_BODY_ID,
-	{0, 0},
-	{0, 0},
-	0,
-	0,
-	0,
-	0,
-	0,
-	false,
+	// User data pointer
+	user_data: rawptr,
 }
 
 // Wheel joint definition. This requires defining a line of
@@ -360,22 +306,7 @@ Wheel_Joint_Def :: struct
 
 	// Set this flag to true if the attached bodies should collide.
 	collide_connected: bool,
-}
 
-// Use this to initialize your joint definition
-DEFAULT_WHEEL_JOINT_DEF :: Wheel_Joint_Def {
-	NULL_BODY_ID,
-	NULL_BODY_ID,
-	{0, 0},
-	{0, 0},
-	{0, 1},
-	false,
-	0,
-	0,
-	false,
-	0,
-	0,
-	1.0,
-	0.7,
-	false,
-};
+	// User data pointer
+	user_data: rawptr,
+}

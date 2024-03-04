@@ -1,8 +1,5 @@
 package box2d
 
-// Color for debug drawing. Each value has the range [0,1].
-Color :: [4]f32
-
 // All the colors! Credit to wherever I got this from, I forget.
 Hex_Color :: enum i32
 {
@@ -574,7 +571,20 @@ Hex_Color :: enum i32
 	Yellow_Green = 0x9acd32,
 }
 
-make_color :: proc "contextless" (hex_code: Hex_Color, alpha: f32) -> Color
+// Make a color from a hex code
+make_color :: proc "contextless" (hex_code: Hex_Color) -> Color
+{
+	color: Color
+    hex_code := int(hex_code)
+	color.r = cast(f32)((hex_code >> 16) & 0xFF) / 255
+	color.g = cast(f32)((hex_code >> 8) & 0xFF) / 255
+	color.b = cast(f32)(hex_code & 0xFF) / 255;
+	color.a = 1;
+	return color;
+}
+
+// Make a color from a hex code and alpha
+make_color_alpha :: proc "contextless" (hex_code: Hex_Color, alpha: f32) -> Color
 {
 	color: Color
     hex_code := int(hex_code)
