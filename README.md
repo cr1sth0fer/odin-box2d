@@ -58,12 +58,11 @@ main :: proc()
     b2.create_circle_shape(body_id, &shape_def, &circle)
 
     time_step: f32 = 1.0 / 60
-    velocity_iterations: i32 = 8
-    position_iterations: i32 = 3
+    sub_steps: i32 = 4
     
     for i in 0..<60
     {
-        b2.world_step(world_id, time_step, velocity_iterations, position_iterations)
+        b2.world_step(world_id, time_step, sub_steps)
         position := b2.body_get_position(body_id)
         angle := b2.body_get_angle(body_id)
         fmt.println(position, angle)
