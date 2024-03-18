@@ -5,7 +5,8 @@ Box2D 3.0 https://github.com/erincatto/box2c
 Current commit: https://github.com/erincatto/box2c/commit/29adfcfb4dbc371a50e37d8e17b072d990ad7ae6
 
 Included platform binaries:
-* windows_amd64
+* windows_amd64_avx2
+* windows_amd64_sse2
 
 All binaries are build using the default settings.
 All binaries are located in binaries directory if you want to use your own build of Box2D.
