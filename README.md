@@ -7,6 +7,8 @@ Current commit: https://github.com/erincatto/box2c/commit/29adfcfb4dbc371a50e37d
 Included platform binaries:
 * windows_amd64_avx2
 * windows_amd64_sse2
+* linux_amd64_avx2
+* linux_amd64_sse2
 
 All binaries are build using the default settings.
 All binaries are located in binaries directory if you want to use your own build of Box2D.
