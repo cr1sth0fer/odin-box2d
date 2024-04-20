@@ -21,6 +21,21 @@ when ODIN_OS == .Windows && ODIN_ARCH == .amd64
         }
     }
 }
+else when ODIN_OS == .Linux && ODIN_ARCH == .amd64
+{
+    when AVX2
+    {
+        foreign import box2d {
+            "binaries/box2d_linux_amd64_avx2.a",
+        }
+    }
+    else
+    {
+        foreign import box2d {
+        	"binaries/box2d_linux_amd64_sse2.a",
+        }
+    }
+}
 
 @(default_calling_convention="c")
 foreign box2d
