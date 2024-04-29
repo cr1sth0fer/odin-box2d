@@ -578,9 +578,9 @@ make_color :: proc "contextless" (hex_code: Hex_Color) -> Color
     hex_code := int(hex_code)
 	color.r = cast(f32)((hex_code >> 16) & 0xFF) / 255
 	color.g = cast(f32)((hex_code >> 8) & 0xFF) / 255
-	color.b = cast(f32)(hex_code & 0xFF) / 255;
-	color.a = 1;
-	return color;
+	color.b = cast(f32)(hex_code & 0xFF) / 255
+	color.a = 1
+	return color
 }
 
 // Make a color from a hex code and alpha
@@ -590,7 +590,7 @@ make_color_alpha :: proc "contextless" (hex_code: Hex_Color, alpha: f32) -> Colo
     hex_code := int(hex_code)
 	color.r = cast(f32)((hex_code >> 16) & 0xFF) / 255
 	color.g = cast(f32)((hex_code >> 8) & 0xFF) / 255
-	color.b = cast(f32)(hex_code & 0xFF) / 255;
-	color.a = alpha;
-	return color;
+	color.b = cast(f32)(hex_code & 0xFF) / 255
+	color.a = alpha
+	return color
 }

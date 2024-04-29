@@ -48,7 +48,7 @@ Distance_Output :: struct
 	point_a, ///< closest point on shapeA
 	point_b: Vec2, ///< closest point on shapeB
 	distance: f32,
-	iterations: i32 ///< number of GJK iterations used
+	iterations: i32, ///< number of GJK iterations used
 }
 
 // Input parameters for b2ShapeCast
@@ -86,7 +86,7 @@ TOI_Input :: struct
 	sweep_b: Sweep,
 
 	// defines sweep interval [0, tMax]
-	t_max: f32
+	t_max: f32,
 }
 
 // Describes the TOI output
@@ -96,7 +96,7 @@ TOI_State :: enum i32
 	Failed,
 	Overlapped,
 	Hit,
-	Separated
+	Separated,
 }
 
 // Output parameters for time_of_impact.
