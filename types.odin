@@ -135,7 +135,7 @@ Body_Def :: struct
 	is_bullet,
 
 	// Does this body start out enabled?
-	is_enabled: bool
+	is_enabled: bool,
 }
 
 // This holds contact filtering data.

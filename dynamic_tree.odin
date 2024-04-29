@@ -77,11 +77,11 @@ Tree_Shape_Cast_Callback_Fcn :: #type proc "c" (input: ^Shape_Cast_Input, proxy_
 // - return the proxy user data or 0 if the id is invalid
 dynamic_tree_get_user_data :: #force_inline proc(tree: ^Dynamic_Tree, proxy_id: i32) -> i32
 {
-	return tree.nodes[proxy_id].user_data;
+	return tree.nodes[proxy_id].user_data
 }
 
 // Get the AABB of a proxy
 dynamic_tree_get_aabb :: #force_inline proc(tree: ^Dynamic_Tree, proxy_id: i32) -> AABB
 {
-	return tree.nodes[proxy_id].aabb;
+	return tree.nodes[proxy_id].aabb
 }

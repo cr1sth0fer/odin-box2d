@@ -74,7 +74,7 @@ Polygon :: struct
 // A line segment with two-sided collision.
 Segment :: struct
 {
-	point1, point2: Vec2
+	point1, point2: Vec2,
 }
 
 // A smooth line segment with one-sided collision. Only collides on the right side.
