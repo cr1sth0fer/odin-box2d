@@ -1,40 +1,41 @@
 package box2d
 
-// References a world instance
+// World id references a world instance. This should be treated as an opaque handle.
 World_ID :: struct
 {
-	index: u16,
+	index1: u16,
 	revision: u16,
 }
 
-// Body identifier
+// Body id references a body instance. This should be treated as an opaque handle.
 Body_ID :: struct
 {
-	index: i32,
-	world: u16,
+	index1: i32,
+	world0: u16,
 	revision: u16,
 }
 
-// References a shape instance
+// Shape id references a shape instance. This should be treated as an opaque handle.
 Shape_ID :: struct
 {
-	index: i32,
-	world: u16,
+	index1: i32,
+	world0: u16,
 	revision: u16,
 }
 
-// References a joint instance
+// Joint id references a joint instance. This should be treated as an opaque handle.
 Joint_ID :: struct
 {
-	index: i32,
-	world: u16,
+	index1: i32,
+	world0: u16,
 	revision: u16,
 }
 
+// Chain id references a chain instances. This should be treated as an opaque handle.
 Chain_ID :: struct
 {
-	index: i32,
-	world: i16,
+	index1: i32,
+	world0: u16,
 	revision: u16,
 }
 
@@ -47,17 +48,17 @@ NULL_CHAIN_ID :: Chain_ID{}
 // Determine if any id is null
 is_null :: #force_inline proc "contextless" (id: $T) -> bool
 {
-    return id.index == 0
+    return id.index1 == 0
 }
 
 // Determine if any id is non-null
 is_non_null :: #force_inline proc "contextless" (id: $T) -> bool
 {
-    return id.index != 0
+    return id.index1 != 0
 }
 
-// Compare two ids for equality. Doesn't work for World_ID.
+// Compare two ids for equality. Doesn't work for ```World_ID```.
 id_equals :: #force_inline proc "contextless" (id1, id2: $T) -> bool
 {
-    return id1.index == id2.index && id1.world == id2.world && id1.revision == id2.revision
+    return id1.index1 == id2.index1 && id1.world0 == id2.world0 && id1.revision == id2.revision
 }

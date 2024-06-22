@@ -1,12 +1,16 @@
 package box2d
 
+// https://en.wikipedia.org/wiki/Pi
+PI :: 3.14159265359
+
 // 2D vector
+//
+// This can be used to represent a point or free vector
 Vec2 :: [2]f32
 
-// 3D vector
-Vec3 :: [3]f32
-
 // 2D rotation
+//
+// This is similar to using a complex number for rotation
 Rot :: struct
 {
 	// sine and cosine
@@ -21,11 +25,7 @@ Transform :: struct
 }
 
 // A 2-by-2 Matrix
-Mat22 :: struct
-{
-	// columns
-	cx, cy: Vec2,
-}
+Mat22 :: matrix[2,2]f32
 
 // Axis-aligned bounding box
 AABB :: struct
@@ -33,6 +33,3 @@ AABB :: struct
 	lower_bound,
 	upper_bound: Vec2,
 }
-
-// Color for debug drawing. Each value has the range [0,1].
-Color :: [4]f32
