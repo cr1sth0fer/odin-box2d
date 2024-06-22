@@ -1566,13 +1566,13 @@ Debug_Draw :: struct
     draw_polygon: proc "c" (vertices: [^]Vec2, vertex_count: i32, color: HEX_Color, context_: rawptr),
 
 	// Draw a solid closed polygon provided in CCW order.
-    draw_solid_polygon: proc "c" (vertices: [^]Vec2, vertex_count: i32, color: HEX_Color, context_: rawptr),
+    draw_solid_polygon: proc "c" (transform: Transform, vertices: [^]Vec2, vertex_count: i32, radius: f32, color: HEX_Color, context_: rawptr),
     
 	// Draw a circle.
     draw_circle: proc "c" (center: Vec2, radius: f32, color: HEX_Color, context_: rawptr),
     
 	// Draw a solid circle.
-    draw_solid_circle: proc "c" (center: Vec2, radius: f32, axis: Vec2, color: HEX_Color, context_: rawptr),
+    draw_solid_circle: proc "c" (transform: Transform, center: Vec2, radius: f32, axis: Vec2, color: HEX_Color, context_: rawptr),
     
 	// Draw a capsule.
     draw_capsule: proc "c" (p1, p2: Vec2, radius: f32, color: HEX_Color, context_: rawptr),
@@ -1584,7 +1584,7 @@ Debug_Draw :: struct
     draw_segment: proc "c" (p1, p2: Vec2, color: HEX_Color, context_: rawptr),
     
 	// Draw a transform. Choose your own length scale.
-    draw_transform: proc "c" (xf: Transform, context_: rawptr),
+    draw_transform: proc "c" (transform: Transform, context_: rawptr),
     
 	// Draw a point.
     draw_point: proc "c" (p: Vec2, size: f32, color: HEX_Color, context_: rawptr),

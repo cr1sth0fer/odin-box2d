@@ -13,8 +13,8 @@ Vec2 :: [2]f32
 // This is similar to using a complex number for rotation
 Rot :: struct
 {
-	// sine and cosine
-	s, c: f32,
+	// cosine and sine
+	c, s: f32,
 }
 
 // A 2D rigid transform
