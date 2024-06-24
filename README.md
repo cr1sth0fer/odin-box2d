@@ -15,8 +15,7 @@ All binaries are located in binaries directory if you want to use your own build
 
 Defines for Box2D Constants:
 * BOX2D_AVX2 (default: true)
-
-Only change it if you build your own version using diferent constant values.
+* BOX2D_MAX_POLYGON_VERTICES (default: 8)
 
 # Example:
 
@@ -47,11 +46,7 @@ main :: proc()
     body_id := b2.create_body(world_id, &body_def)
 
     shape_def := b2.default_shape_def(0)
-    shape_def.density = 1
-    shape_def.friction = 0.3
-
-    circle: b2.Circle
-    circle.radius = 1
+    circle := b2.Circle{{0, 0}, 1}
     b2.create_circle_shape(body_id, &shape_def, &circle)
 
     time_step: f32 = 1.0 / 60
