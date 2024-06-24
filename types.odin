@@ -1572,7 +1572,7 @@ Debug_Draw :: struct
     draw_circle: proc "c" (center: Vec2, radius: f32, color: HEX_Color, context_: rawptr),
     
 	// Draw a solid circle.
-    draw_solid_circle: proc "c" (transform: Transform, center: Vec2, radius: f32, axis: Vec2, color: HEX_Color, context_: rawptr),
+    draw_solid_circle: proc "c" (transform: Transform, radius: f32, color: HEX_Color, context_: rawptr),
     
 	// Draw a capsule.
     draw_capsule: proc "c" (p1, p2: Vec2, radius: f32, color: HEX_Color, context_: rawptr),
