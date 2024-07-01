@@ -6,11 +6,17 @@
 
 #include "stdio.h"
 
-#define ODIN_ASSERT(_C_Type_, _Odin_Type_) fprintf(file, "#assert(size_of(%s) == %llu)\n", _Odin_Type_, sizeof(_C_Type_))
 
 int main()
 {
-    FILE* file = fopen("assertions.odin", "w");
+#if defined(_WIN32)
+    #define ODIN_ASSERT(_C_Type_, _Odin_Type_) fprintf(file, "#assert(size_of(%s) == %llu)\n", _Odin_Type_, sizeof(_C_Type_))
+    FILE* file = fopen("assertions_windows.odin", "w");
+#elif defined(__linux__)
+    #define ODIN_ASSERT(_C_Type_, _Odin_Type_) fprintf(file, "#assert(size_of(%s) == %lu)\n", _Odin_Type_, sizeof(_C_Type_))
+    FILE* file = fopen("assertions_linux.odin", "w");
+#endif
+
     fprintf(file, "package box2d\n\n");
 
     ODIN_ASSERT(b2Version, "Version");

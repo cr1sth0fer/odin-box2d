@@ -1,7 +1,7 @@
 package box2d
 
 #assert(size_of(Version) == 12)
-#assert(size_of(Timer) == 8)
+#assert(size_of(Timer) == 16)
 #assert(size_of(Ray_Cast_Input) == 20)
 #assert(size_of(Shape_Cast_Input) == 84)
 #assert(size_of(Cast_Output) == 28)
