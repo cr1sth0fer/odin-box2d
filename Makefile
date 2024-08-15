@@ -12,7 +12,7 @@ $(TARGET_LIN_AVX): submodules
 	cd $(BOX2D_SRC) \
 		&& cmake $(BOX2D_CMAKE_OPTS) $(BOX2D_CMAKE_OPT_AVX)=ON . \
 		&& make \
-		&& mv src/libbox2d.a ../binaries/box2d_linux_amd64_avx2.a
+		&& mv src/libbox2d.a ../binaries/$(TARGET_LIN_AVX)
 
 .PHONY: submodules
 submodules:
