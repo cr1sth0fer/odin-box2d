@@ -311,7 +311,7 @@ foreign box2d
 
     // Set the world transform of a body. This acts as a teleport and is fairly expensive.
     @(link_name="b2Body_SetTransform")
-    body_set_transform :: proc(body_id: Body_ID, position: Vec2, angle: f32) ---
+    body_set_transform :: proc(body_id: Body_ID, position: Vec2, rotation: Rot) ---
 
     // Get a local point on a body given a world point
     @(link_name="b2Body_GetLocalPoint")
