@@ -280,6 +280,9 @@ Shape_Def :: struct
 	// Contact filtering data.
 	filter: Filter,
 
+	// Custom debug draw color.
+	custom_color: i32,
+
 	// A sensor shape collects contact information but never generates a collision
 	// response.
 	is_sensor: bool,
