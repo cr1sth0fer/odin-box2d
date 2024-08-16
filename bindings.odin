@@ -1477,8 +1477,11 @@ foreign box2d
     // ```Circle```, ```Polygon```, ```Edge_Shape```. The simplex cache is input/output.
     //
     // On the first call set b2SimplexCache.count to zero.
+	// Compute the closest points between two shapes represented as point clouds.
+	// b2DistanceCache cache is input/output. On the first call set b2DistanceCache.count to zero.
+	//    The underlying GJK algorithm may be debugged by passing in debug simplexes and capacity. You may pass in NULL and 0 for these.
     @(link_name="b2ShapeDistance")
-    shape_distance :: proc(cache: ^Distance_Cache, input: ^Distance_Input) -> Distance_Output ---
+    shape_distance :: proc(cache: ^Distance_Cache, input: ^Distance_Input, simplexes: ^Simplex = nil, simplex_capacity: i32 = 0) -> Distance_Output ---
 
     // Perform a linear shape cast of shape B moving and shape A fixed. Determines the hit point, normal, and translation fraction.
     //
