@@ -80,6 +80,9 @@ World_Def :: struct
 	// Joint bounciness. Non-dimensional.
 	joint_damping_ratio: f32,
 
+	// Maximum linear velocity. Usually meters per second.
+	maximum_linear_velocity: f32,
+
 	// Can bodies go to sleep to improve performance
 	enable_sleep,
 
