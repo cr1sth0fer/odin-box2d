@@ -1,6 +1,3 @@
-[submodule ".box2c"]
-	path = .box2c
-	url = https://github.com/erincatto/box2c.git
 [submodule ".box2d"]
 	path = .box2d
 	url = https://github.com/erincatto/box2d.git
