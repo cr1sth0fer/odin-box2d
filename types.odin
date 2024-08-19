@@ -80,6 +80,9 @@ World_Def :: struct
 	// Joint bounciness. Non-dimensional.
 	joint_damping_ratio: f32,
 
+	// Maximum linear velocity. Usually meters per second.
+	maximum_linear_velocity: f32,
+
 	// Can bodies go to sleep to improve performance
 	enable_sleep,
 
@@ -99,7 +102,7 @@ World_Def :: struct
 
 	// User context that is provided to ```enqueue_task``` and ```finish_task```
 	user_task_context: rawptr,
-	
+
 	// Used internally to detect a valid definition. DO **NOT SET**.
 	internal_value: i32,
 }
@@ -131,8 +134,8 @@ Body_Def :: struct
 	// if the body is moved after shapes have been added.
 	position: Vec2,
 
-	// The initial world angle of the body in radians.
-	angle: f32,
+	// The initial world rotation of the body. Use b2MakeRot() if you have an angle.
+	rotation: Rot,
 
 	// The initial linear velocity of the body's origin. Typically in meters per second.
 	linear_velocity: Vec2,
@@ -187,6 +190,10 @@ Body_Def :: struct
 	//
 	// Triggers whenever a shape is add/removed/changed. Default is true.
 	automatic_mass: bool,
+
+	// This allows this body to bypass rotational speed limits. Should only be used
+	// for circular objects, like wheels.
+	allowFastRotation: bool,
 
 	// Used internally to detect a valid definition. **DO NOT SET**.
 	internal_value: i32,
@@ -247,10 +254,10 @@ Shape_Type :: enum i32
 
 	// A capsule is an extruded circle
 	Capsule,
-	
+
 	// A line segment
 	Segment,
-	
+
 	// A convex polygon
 	Polygon,
 
@@ -279,6 +286,9 @@ Shape_Def :: struct
 
 	// Contact filtering data.
 	filter: Filter,
+
+	// Custom debug draw color.
+	custom_color: i32,
 
 	// A sensor shape collects contact information but never generates a collision
 	// response.
@@ -331,13 +341,13 @@ Chain_Def :: struct
 
 	// The point count, must be 4 or more.
 	count: i32,
-	
+
 	// The friction coefficient, usually in the range [0,1].
 	friction: f32,
 
 	// The restitution (elasticity) usually in the range [0,1].
 	restitution: f32,
-	
+
 	// Contact filtering data.
 	filter: Filter,
 
@@ -1567,25 +1577,25 @@ Debug_Draw :: struct
 
 	// Draw a solid closed polygon provided in CCW order.
     draw_solid_polygon: proc "c" (transform: Transform, vertices: [^]Vec2, vertex_count: i32, radius: f32, color: HEX_Color, context_: rawptr),
-    
+
 	// Draw a circle.
     draw_circle: proc "c" (center: Vec2, radius: f32, color: HEX_Color, context_: rawptr),
-    
+
 	// Draw a solid circle.
     draw_solid_circle: proc "c" (transform: Transform, radius: f32, color: HEX_Color, context_: rawptr),
-    
+
 	// Draw a capsule.
     draw_capsule: proc "c" (p1, p2: Vec2, radius: f32, color: HEX_Color, context_: rawptr),
-    
+
 	// Draw a solid capsule.
     draw_solid_capsule: proc "c" (p1, p2: Vec2, radius: f32, color: HEX_Color, context_: rawptr),
-    
+
 	// Draw a line segment.
     draw_segment: proc "c" (p1, p2: Vec2, color: HEX_Color, context_: rawptr),
-    
+
 	// Draw a transform. Choose your own length scale.
     draw_transform: proc "c" (transform: Transform, context_: rawptr),
-    
+
 	// Draw a point.
     draw_point: proc "c" (p: Vec2, size: f32, color: HEX_Color, context_: rawptr),
 

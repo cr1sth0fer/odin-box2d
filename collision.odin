@@ -68,7 +68,7 @@ Mass_Data :: struct
 	center: Vec2,
 
 	// The rotational inertia of the shape about the local origin.
-	i: f32,
+	rotational_inertia: f32,
 }
 
 // A solid circle
@@ -197,9 +197,6 @@ Distance_Proxy :: struct
 // use zero initialization.
 Distance_Cache :: struct
 {
-    // Length or area
-	metric: f32,
-
     // The number of stored simplex points
 	count: u16,
 
@@ -231,7 +228,7 @@ Distance_Input :: struct
 	use_radii: bool,
 }
 
-// Output for b2Distance.
+// Output for b2ShapeDistance.
 Distance_Output :: struct
 {
     // Closest point on shape A
@@ -245,6 +242,27 @@ Distance_Output :: struct
 
     // Number of GJK iterations used
 	iterations: i32,
+
+	// The number of simplexes stored in the simplex array
+	simplex_count: i32,
+}
+
+// Simplex vertex for debugging the GJK algorithm
+Simplex_Vertex :: struct
+{
+	wA: Vec2,    // support point in proxyA
+	wB: Vec2,    // support point in proxyB
+	w:  Vec2,    // wB - wA
+	a:  f32,     // barycentric coordinate for closest point
+	indexA: i32, // wA index
+	indexB: i32, // wB index
+}
+
+// Simplex from the GJK algorithm
+Simplex :: struct
+{
+	v1, v2, v3: Simplex_Vertex, // vertices
+	count: i32                  // number of valid vertices
 }
 
 // Input parameters for b2ShapeCast
@@ -414,7 +432,7 @@ Tree_Node :: struct
 	// Child 2 index
 	child2: i32, // 4
 
-	// User data 
+	// User data
 	// todo could be union with child index
 	user_data: i32, // 4
 
