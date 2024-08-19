@@ -193,7 +193,7 @@ Body_Def :: struct
 
 	// This allows this body to bypass rotational speed limits. Should only be used
 	// for circular objects, like wheels.
-	allowFastRotation: bool,
+	allow_fast_rotation: bool,
 
 	// Used internally to detect a valid definition. **DO NOT SET**.
 	internal_value: i32,
@@ -288,7 +288,7 @@ Shape_Def :: struct
 	filter: Filter,
 
 	// Custom debug draw color.
-	custom_color: i32,
+	custom_color: u32,
 
 	// A sensor shape collects contact information but never generates a collision
 	// response.

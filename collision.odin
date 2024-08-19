@@ -209,7 +209,7 @@ Distance_Cache :: struct
 
 EMPTY_DISTANCE_CACHE :: Distance_Cache{}
 
-// Input for b2Distance
+// Input for ```Shape_Distance```
 Distance_Input :: struct
 {
     // The proxy for shape A
@@ -228,13 +228,13 @@ Distance_Input :: struct
 	use_radii: bool,
 }
 
-// Output for b2ShapeDistance.
+// Output for ```Shape_Distance```
 Distance_Output :: struct
 {
     // Closest point on shape A
 	point_a: Vec2,
 
-    // closest point on shape B
+    // Closest point on shape B
 	point_b: Vec2,
 
     // The final distance, zero if overlapped
@@ -250,19 +250,33 @@ Distance_Output :: struct
 // Simplex vertex for debugging the GJK algorithm
 Simplex_Vertex :: struct
 {
-	wA: Vec2,    // support point in proxyA
-	wB: Vec2,    // support point in proxyB
-	w:  Vec2,    // wB - wA
-	a:  f32,     // barycentric coordinate for closest point
-	indexA: i32, // wA index
-	indexB: i32, // wB index
+	// Support point in proxyA
+	w_a: Vec2,
+
+	// Support point in proxyB
+	w_b: Vec2,
+
+	// ```w_b - w_a```
+	w: Vec2,
+
+	// Barycentric coordinate for closest point
+	a: f32,
+
+	// ```w_a``` index
+	index_a: i32,
+
+	// ```w_b``` index
+	index_b: i32,
 }
 
 // Simplex from the GJK algorithm
 Simplex :: struct
 {
-	v1, v2, v3: Simplex_Vertex, // vertices
-	count: i32                  // number of valid vertices
+	// Vertices
+	v1, v2, v3: Simplex_Vertex,
+
+	// Number of valid vertices
+	count: i32,
 }
 
 // Input parameters for b2ShapeCast
@@ -504,14 +518,14 @@ Tree_Shape_Cast_Callback_Fcn :: #type proc "c" (input: ^Shape_Cast_Input, proxy_
 
 // Get proxy user data
 //
-// *return* the proxy user data or ```0``` if the id is invalid
-dynamic_tree_get_user_data :: #force_inline proc(tree: ^Dynamic_Tree, proxy_id: i32) -> i32
+// * *return* the proxy user data or ```0``` if the id is invalid
+dynamic_tree_get_user_data :: #force_inline proc "contextless" (tree: ^Dynamic_Tree, proxy_id: i32) -> i32
 {
 	return tree.nodes[proxy_id].user_data
 }
 
-// Get the AABB of a proxy
-dynamic_tree_get_aabb :: #force_inline proc(tree: ^Dynamic_Tree, proxy_id: i32) -> AABB
+// Get the ```AABB``` of a proxy
+dynamic_tree_get_aabb :: #force_inline proc "contextless" (tree: ^Dynamic_Tree, proxy_id: i32) -> AABB
 {
 	return tree.nodes[proxy_id].aabb
 }

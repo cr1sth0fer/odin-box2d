@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include ".box2c/include/box2d/box2d.h"
+#include ".box2d/include/box2d/box2d.h"
 
 #ifdef ASSERTIONS
 
@@ -35,6 +35,8 @@ int main()
     ODIN_ASSERT(b2DistanceCache, "Distance_Cache");
     ODIN_ASSERT(b2DistanceInput, "Distance_Input");
     ODIN_ASSERT(b2DistanceOutput, "Distance_Output");
+    ODIN_ASSERT(b2SimplexVertex, "Simplex_Vertex");
+    ODIN_ASSERT(b2Simplex, "Simplex");
     ODIN_ASSERT(b2ShapeCastPairInput, "Shape_Cast_Pair_Input");
     ODIN_ASSERT(b2Sweep, "Sweep");
     ODIN_ASSERT(b2TOIInput, "TOI_Input");

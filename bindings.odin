@@ -1472,16 +1472,12 @@ foreign box2d
     @(link_name="b2SegmentDistance")
     segment_distance :: proc(p1, q1, p2, q2: Vec2) -> Segment_Distance_Result ---
 
-    // Compute the closest points between two shapes. Supports any combination of:
+    // Compute the closest points between two shapes represented as point clouds.
+    // ```Distance_Cache``` cache is input/output. On the first call set ```Distance_Cache.count``` to zero.
     //
-    // ```Circle```, ```Polygon```, ```Edge_Shape```. The simplex cache is input/output.
-    //
-    // On the first call set b2SimplexCache.count to zero.
-	// Compute the closest points between two shapes represented as point clouds.
-	// b2DistanceCache cache is input/output. On the first call set b2DistanceCache.count to zero.
-	//    The underlying GJK algorithm may be debugged by passing in debug simplexes and capacity. You may pass in NULL and 0 for these.
+    // The underlying GJK algorithm may be debugged by passing in debug simplexes and capacity. You may pass in ```nil``` and ```0``` for these.
     @(link_name="b2ShapeDistance")
-    shape_distance :: proc(cache: ^Distance_Cache, input: ^Distance_Input, simplexes: ^Simplex = nil, simplex_capacity: i32 = 0) -> Distance_Output ---
+    shape_distance :: proc(cache: ^Distance_Cache, input: ^Distance_Input, simplexes: ^Simplex, simplex_capacity: i32) -> Distance_Output ---
 
     // Perform a linear shape cast of shape B moving and shape A fixed. Determines the hit point, normal, and translation fraction.
     //
